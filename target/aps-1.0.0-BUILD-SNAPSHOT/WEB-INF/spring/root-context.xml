@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+	http://www.springframework.org/schema/context  
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+<bean
+  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>classpath:config.properties</value>
+        </list>
+    </property>
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+</bean>
+     
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${jdbc.bd}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}"  />			
+	</bean>
+	
+	<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="ds"></property>
+	</bean>	
+	<bean id="daouser" class="com.aps.dao.seguridad.UsuarioDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoperfil" class="com.aps.dao.seguridad.PerfilDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daorole" class="com.aps.dao.seguridad.RoleDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daousuariorole" class="com.aps.dao.seguridad.UsuarioRoleDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="dao" class="com.aps.dao.catalogos.UrlDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	
+	<bean id="daoempresa" class="com.aps.dao.catalogos.EmpresaDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoalmacen" class="com.aps.dao.catalogos.AlmacenDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoproemp" class="com.aps.dao.catalogos.ProempresaDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoarticulo" class="com.aps.dao.catalogos.ArticuloDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoartxempresa" class="com.aps.dao.catalogos.ArtxempresaDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daofolio" class="com.aps.dao.catalogos.FolioDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoclasificacion" class="com.aps.dao.catalogos.ClasificacionDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoprecio" class="com.aps.dao.catalogos.PrecioDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daocliente" class="com.aps.dao.catalogos.ClienteDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daocontrol" class="com.aps.dao.operacion.ControlDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daocorte" class="com.aps.dao.operacion.CorteDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoretiro" class="com.aps.dao.operacion.RetiroDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	
+	
+	<!-- ********************  -->
+   <!-- 	  por el momento  -->
+	
+	<bean id="daomarca" class="com.aps.dao.catalogos.MarcaDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daolinea" class="com.aps.dao.catalogos.LineaDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daosublinea" class="com.aps.dao.catalogos.SublineaDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daosublineados" class="com.aps.dao.catalogos.SublineadosDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daodepto" class="com.aps.dao.catalogos.DepartamentoDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daosubdepto" class="com.aps.dao.catalogos.SubdepartamentoDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoprov" class="com.aps.dao.catalogos.ProveedorDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	
+	<bean id="daoudm" class="com.aps.dao.catalogos.UnidadMedidaDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoeudm" class="com.aps.dao.catalogos.EquivalenciaUnidadMedidaDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	
+	<bean id="daoproart" class="com.aps.dao.catalogos.ProartDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoclasificador" class="com.aps.dao.catalogos.ClasificadorDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoventas" class="com.aps.dao.operacion.VentasDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daomaealm" class="com.aps.dao.operacion.MaealmDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daotraspaso" class="com.aps.dao.operacion.TraspasoDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daotransito" class="com.aps.dao.operacion.TransitoDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daocalendario" class="com.aps.dao.operacion.CalendarioDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="daoresurtido" class="com.aps.dao.operacion.ResurtidoDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+
+	<bean id="daoforecasting" class="com.aps.dao.operacion.ForecastingDao">
+		<property name="template" ref="jt"></property>
+	</bean>
+</beans>
